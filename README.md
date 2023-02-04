@@ -21,7 +21,7 @@ Syllabus
 * [Week 6: Streaming](#week-6-streaming)
 * [Week 7, 8 & 9: Project](#week-7-8--9-project) -->
 
-## Taking the course
+<!-- ## Taking the course
 
 ### 2023 Cohort
 
@@ -29,7 +29,7 @@ Syllabus
 * **Registration link**: https://airtable.com/shr6oVXeQvSI5HuWD
 * Subscribe to our [public Google Calendar](https://calendar.google.com/calendar/?cid=ZXIxcjA1M3ZlYjJpcXU0dTFmaG02MzVxMG9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ) (it works from Desktop only)
 * [Cohort folder](cohorts/2023/) with homeworks and deadlines 
-
+ -->
 <!-- ### Self-paced mode
 
 All the materials of the course are freely available, so that you
