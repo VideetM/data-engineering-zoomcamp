@@ -1,11 +1,11 @@
-# Data Engineering Zoomcamp
-# My Submission for Data Engineering Zoomcamp
+
+# My Submission for Data Engineering Zoomcamp 2023 🧑🏻‍💻
 
 <!-- <p align="center">
   <a href="https://airtable.com/shr6oVXeQvSI5HuWD"><img src="https://user-images.githubusercontent.com/875246/185755203-17945fd1-6b64-46f2-8377-1011dcb1a444.png" height="50" /></a>
 </p>
  -->
-- Register in [DataTalks.Club's Slack](https://datatalks.club/slack.html)
+<!-- - Register in [DataTalks.Club's Slack](https://datatalks.club/slack.html)
 - Join the [`#course-data-engineering`](https://app.slack.com/client/T01ATQK62F8/C01FABYF2RG) channel
 - Join the [course Telegram channel with announcements](https://t.me/dezoomcamp)
 - The videos are published on [DataTalks.Club's YouTube channel](https://www.youtube.com/c/DataTalksClub) in [the course playlist](https://www.youtube.com/playlist?list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb)
@@ -19,7 +19,7 @@ Syllabus
 * [Week 4: Analytics Engineering](#week-4-analytics-engineering)
 * [Week 5: Batch processing](#week-5-batch-processing)
 * [Week 6: Streaming](#week-6-streaming)
-* [Week 7, 8 & 9: Project](#week-7-8--9-project)
+* [Week 7, 8 & 9: Project](#week-7-8--9-project) -->
 
 ## Taking the course
 
@@ -30,7 +30,7 @@ Syllabus
 * Subscribe to our [public Google Calendar](https://calendar.google.com/calendar/?cid=ZXIxcjA1M3ZlYjJpcXU0dTFmaG02MzVxMG9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ) (it works from Desktop only)
 * [Cohort folder](cohorts/2023/) with homeworks and deadlines 
 
-### Self-paced mode
+<!-- ### Self-paced mode
 
 All the materials of the course are freely available, so that you
 can take the course at your own pace
@@ -39,8 +39,8 @@ can take the course at your own pace
 * You don't need to fill in the registration form. Just start watching the videos and join Slack
 * Check [FAQ](https://docs.google.com/document/d/19bnYs80DwuUimHM65UV3sylsCn2j1vziPOwzBwQrebw/edit?usp=sharing) if you have problems
 * If you can't find a solution to your problem in FAQ, ask for help in Slack
-
-
+ -->
+<!-- 
 
 ### Asking for help in Slack
 
@@ -49,7 +49,7 @@ The best way to get support is to use [DataTalks.Club's Slack](https://datatalks
 To make discussions in Slack more organized:
 
 * Follow [these recommendations](asking-questions.md) when asking for help
-* Read the [DataTalks.Club community guidelines](https://datatalks.club/slack/guidelines.html)
+* Read the [DataTalks.Club community guidelines](https://datatalks.club/slack/guidelines.html) -->
 
 
 ## Syllabus
@@ -192,7 +192,7 @@ See [Week 1](week_1_basics_n_setup) for more details about installing these tool
 
 
 
-## FAQ
+<!-- ## FAQ
 
 
 * **Q**: I registered, but haven't received a confirmation email. Is it normal?
@@ -211,7 +211,7 @@ See [Week 1](week_1_basics_n_setup) for more details about installing these tool
 
 
 ## Supporters and partners
-
+ -->
 Thanks to the course sponsors for making it possible to create this course
 
 <p align="center">
