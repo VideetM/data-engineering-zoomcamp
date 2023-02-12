@@ -16,6 +16,7 @@ terraform plan -var="project=<your-gcp-project-id>"
 ```
 
 ```shell
+#insert test neovim 
 # Create new infra
 terraform apply -var="project=<your-gcp-project-id>"
 ```

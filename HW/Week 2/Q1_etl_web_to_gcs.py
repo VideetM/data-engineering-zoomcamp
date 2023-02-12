@@ -15,6 +15,7 @@ def fetch(dataset_url: str) -> pd.DataFrame:
     return df
 
 
+
 @task(log_prints=True)
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     """Fix dtype issues"""
