@@ -1,6 +1,11 @@
 from pyspark.sql import SparkSession
 import pyspark.sql.functions as F
 
+<<<<<<< HEAD
+=======
+# from pyspark.sql.streaming.trigger import Trigger
+
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
 from settings import RIDE_SCHEMA, CONSUME_TOPIC_RIDES_CSV, TOPIC_WINDOWED_VENDOR_ID_COUNT
 
 

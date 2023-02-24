@@ -1,13 +1,19 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from confluent_kafka import avro
 from confluent_kafka.avro import AvroProducer
 =======
 import os
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
+=======
+import os
+from confluent_kafka import Producer
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
 import csv
 from time import sleep
 from typing import Dict
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 def load_avro_schema_from_file():
@@ -26,19 +32,37 @@ from ride_record import RideRecord, ride_record_to_dict
 from settings import RIDE_KEY_SCHEMA_PATH, RIDE_VALUE_SCHEMA_PATH, \
     SCHEMA_REGISTRY_URL, BOOTSTRAP_SERVERS, INPUT_DATA_PATH, KAFKA_TOPIC
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
+=======
+from confluent_kafka.schema_registry import SchemaRegistryClient
+from confluent_kafka.schema_registry.avro import AvroSerializer
+from confluent_kafka.serialization import SerializationContext, MessageField
+from ride_record_key import RideRecordKey, ride_record_key_to_dict
+from ride_record import RideRecord, ride_record_to_dict
+from typing import Dict
+from settings import RIDE_KEY_SCHEMA_PATH, RIDE_VALUE_SCHEMA_PATH, \
+    SCHEMA_REGISTRY_URL, BOOTSTRAP_SERVERS, INPUT_DATA_PATH, KAFKA_TOPIC
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
 
 
-def send_record():
-    key_schema, value_schema = load_avro_schema_from_file()
+def delivery_report(err, msg):
+    if err is not None:
+        print("Delivery failed for record {}: {}".format(msg.key(), err))
+        return
+    print('Record {} successfully produced to {} [{}] at offset {}'.format(
+        msg.key(), msg.topic(), msg.partition(), msg.offset()))
 
-    producer_config = {
-        "bootstrap.servers": "localhost:9092",
-        "schema.registry.url": "http://localhost:8081",
-        "acks": "1"
-    }
 
-    producer = AvroProducer(producer_config, default_key_schema=key_schema, default_value_schema=value_schema)
+class RideAvroProducer:
+    def __init__(self, props: Dict):
+        # Schema Registry and Serializer-Deserializer Configurations
+        key_schema_str = self.load_schema(props['schema.key'])
+        value_schema_str = self.load_schema(props['schema.value'])
+        schema_registry_props = {'url': props['schema_registry.url']}
+        schema_registry_client = SchemaRegistryClient(schema_registry_props)
+        self.key_serializer = AvroSerializer(schema_registry_client, key_schema_str, ride_record_key_to_dict)
+        self.value_serializer = AvroSerializer(schema_registry_client, value_schema_str, ride_record_to_dict)
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     file = open('data/rides.csv')
 =======
@@ -46,23 +70,34 @@ def send_record():
         producer_props = {'bootstrap.servers': props['bootstrap.servers']}
         self.producer = Producer(producer_props)
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
+=======
+        # Producer Configuration
+        producer_props = {'bootstrap.servers': props['bootstrap.servers']}
+        self.producer = Producer(producer_props)
+        self.topic = KAFKA_TOPIC
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
 
-    csvreader = csv.reader(file)
-    header = next(csvreader)
-    for row in csvreader:
-        key = {"vendorId": int(row[0])}
-        value = {"vendorId": int(row[0]), "passenger_count": int(row[3]), "trip_distance": float(row[4]), "payment_type": int(row[9]), "total_amount": float(row[16])}
+    @staticmethod
+    def load_schema(schema_path: str):
+        path = os.path.realpath(os.path.dirname(__file__))
+        with open(f"{path}/{schema_path}") as f:
+            schema_str = f.read()
+        return schema_str
 
-        try:
-            producer.produce(topic='datatalkclub.yellow_taxi_rides', key=key, value=value)
-        except Exception as e:
-            print(f"Exception while producing record value - {value}: {e}")
-        else:
-            print(f"Successfully producing record value - {value}")
+    @staticmethod
+    def delivery_report(err, msg):
+        if err is not None:
+            print("Delivery failed for record {}: {}".format(msg.key(), err))
+            return
+        print('Record {} successfully produced to {} [{}] at offset {}'.format(
+            msg.key(), msg.topic(), msg.partition(), msg.offset()))
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         producer.flush()
 =======
+=======
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
     @staticmethod
     def read_records(resource_path: str):
         ride_records, ride_keys = [], []
@@ -74,6 +109,7 @@ def send_record():
                 ride_keys.append(RideRecordKey(vendor_id=int(row[0])))
         return zip(ride_keys, ride_records)
 
+<<<<<<< HEAD
     def publish(self, topic: str, records: [RideRecordKey, RideRecord]):
         for key_value in records:
             key, value = key_value
@@ -82,6 +118,16 @@ def send_record():
                                       key=self.key_serializer(key, SerializationContext(topic=topic,
                                                                                         field=MessageField.KEY)),
                                       value=self.value_serializer(value, SerializationContext(topic=topic,
+=======
+    def publish(self, records: [RideRecordKey, RideRecord]):
+        for key_value in records:
+            key, value = key_value
+            try:
+                self.producer.produce(topic=self.topic,
+                                      key=self.key_serializer(key, SerializationContext(topic=self.topic,
+                                                                                        field=MessageField.KEY)),
+                                      value=self.value_serializer(value, SerializationContext(topic=self.topic,
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
                                                                                               field=MessageField.VALUE)),
                                       on_delivery=delivery_report)
             except KeyboardInterrupt:
@@ -90,13 +136,20 @@ def send_record():
                 print(f"Exception while producing record - {value}: {e}")
 
         self.producer.flush()
+<<<<<<< HEAD
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
+=======
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
         sleep(1)
+
 
 if __name__ == "__main__":
 <<<<<<< HEAD
+<<<<<<< HEAD
     send_record()
 =======
+=======
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
     config = {
         'bootstrap.servers': BOOTSTRAP_SERVERS,
         'schema_registry.url': SCHEMA_REGISTRY_URL,
@@ -105,5 +158,9 @@ if __name__ == "__main__":
     }
     producer = RideAvroProducer(props=config)
     ride_records = producer.read_records(resource_path=INPUT_DATA_PATH)
+<<<<<<< HEAD
     producer.publish(topic=KAFKA_TOPIC, records=ride_records)
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
+=======
+    producer.publish(records=ride_records)
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))

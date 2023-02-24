@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 from typing import Dict, List
 from json import loads
 from kafka import KafkaConsumer
+=======
+from typing import Dict
+
+from kafka import KafkaConsumer
+from json import loads
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
 
 from ride import Ride
 from settings import BOOTSTRAP_SERVERS, KAFKA_TOPIC
@@ -9,9 +16,15 @@ from settings import BOOTSTRAP_SERVERS, KAFKA_TOPIC
 class JsonConsumer:
     def __init__(self, props: Dict):
         self.consumer = KafkaConsumer(**props)
+<<<<<<< HEAD
 
     def consume_from_kafka(self, topics: List[str]):
         self.consumer.subscribe(topics)
+=======
+        self.consumer.subscribe([KAFKA_TOPIC])
+
+    def consume_from_kafka(self):
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
         print('Consuming from Kafka started')
         print('Available topics to consume: ', self.consumer.subscription())
         while True:
@@ -36,8 +49,16 @@ if __name__ == '__main__':
         'enable_auto_commit': True,
         'key_deserializer': lambda key: int(key.decode('utf-8')),
         'value_deserializer': lambda x: loads(x.decode('utf-8'), object_hook=lambda d: Ride.from_dict(d)),
+<<<<<<< HEAD
         'group_id': 'consumer.group.id.json-example.1',
     }
 
     json_consumer = JsonConsumer(props=config)
     json_consumer.consume_from_kafka(topics=[KAFKA_TOPIC])
+=======
+        'group_id': 'consumer.group.id.json-example.2',
+    }
+
+    json_consumer = JsonConsumer(props=config)
+    json_consumer.consume_from_kafka()
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))

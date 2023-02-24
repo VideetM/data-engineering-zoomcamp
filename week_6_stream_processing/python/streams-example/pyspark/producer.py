@@ -1,6 +1,10 @@
 import csv
 from time import sleep
 from typing import Dict
+<<<<<<< HEAD
+=======
+
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
 from kafka import KafkaProducer
 
 from settings import BOOTSTRAP_SERVERS, INPUT_DATA_PATH, PRODUCE_TOPIC_RIDES_CSV
@@ -18,6 +22,10 @@ class RideCSVProducer:
     def __init__(self, props: Dict):
         self.producer = KafkaProducer(**props)
         # self.producer = Producer(producer_props)
+<<<<<<< HEAD
+=======
+        self.topic = PRODUCE_TOPIC_RIDES_CSV
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
 
     @staticmethod
     def read_records(resource_path: str):
@@ -35,11 +43,19 @@ class RideCSVProducer:
                     break
         return zip(ride_keys, records)
 
+<<<<<<< HEAD
     def publish(self, topic: str, records: [str, str]):
         for key_value in records:
             key, value = key_value
             try:
                 self.producer.send(topic=topic, key=key, value=value)
+=======
+    def publish(self, records: [str, str]):
+        for key_value in records:
+            key, value = key_value
+            try:
+                self.producer.send(topic=self.topic, key=key, value=value)
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
                 print(f"Producing record for <key: {key}, value:{value}>")
             except KeyboardInterrupt:
                 break
@@ -59,4 +75,8 @@ if __name__ == "__main__":
     producer = RideCSVProducer(props=config)
     ride_records = producer.read_records(resource_path=INPUT_DATA_PATH)
     print(ride_records)
+<<<<<<< HEAD
     producer.publish(topic=PRODUCE_TOPIC_RIDES_CSV, records=ride_records)
+=======
+    producer.publish(records=ride_records)
+>>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
