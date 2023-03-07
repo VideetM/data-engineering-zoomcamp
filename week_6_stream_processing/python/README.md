@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Introduction to Kafka
 [Slides](https://docs.google.com/presentation/d/1bCtdCba8v1HxJ_uMm9pwjRUC-NAMeB-6nOG2ng3KujA/edit?usp=sharing)
 
@@ -10,10 +11,36 @@ Please take a look at all configuration from kafka [here](https://docs.confluent
 
 ### Docker
 #### Starting cluster
+=======
+### Stream-Processing with Python
+
+In this document, you will be finding information about stream processing 
+using different Python libraries (`kafka-python`,`confluent-kafka`,`pyspark`, `faust`).
+
+This Python module can be seperated in following modules.
+
+####  1. Docker
+Docker module includes, Dockerfiles and docker-compose definitions 
+to run Kafka and Spark in a docker container. Setting up required services is
+the prerequsite step for running following modules.
+
+#### 2. Kafka Producer - Consumer Examples
+- [Json Producer-Consumer Example](json_example) using `kafka-python` library
+- [Avro Producer-Consumer Example](avro_example) using `confluent-kafka` library
+
+Both of these examples require, up-and running Kafka services, therefore please ensure
+following steps under [docker-README](docker/README.md)
+
+To run the producer-consumer examples in the respective example folder, run following commands
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 ```bash
-docker-compose up
+# Start producer script
+python3 producer.py
+# Start consumer script
+python3 consumer.py
 ```
 
+<<<<<<< HEAD
 ### Command line for Kafka
 #### Create topic
 ```bash
@@ -47,12 +74,10 @@ docker-compose up
 
 The homework is mostly theoretical. In the last question you have to provide working code link, please keep in mind that this 
 question is not scored. 
+=======
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 
 Deadline: 14 March, 22:00 CET
 
-## Community notes
 
-Did you take notes? You can share them here.
 
-* [Notes by Alvaro Navas](https://github.com/ziritrion/dataeng-zoomcamp/blob/main/notes/6_streaming.md )
-* Add your notes here (above this line)
