@@ -6,8 +6,12 @@ import os
 from typing import Dict, List
 =======
 import os
+<<<<<<< HEAD
 from typing import Dict
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
+=======
+from typing import Dict, List
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 
 from confluent_kafka import Consumer
 from confluent_kafka.schema_registry import SchemaRegistryClient
@@ -59,8 +63,11 @@ class RideAvroConsumer:
                           'group.id': 'datatalkclubs.taxirides.avro.consumer.2',
                           'auto.offset.reset': "earliest"}
         self.consumer = Consumer(consumer_props)
+<<<<<<< HEAD
         self.consumer.subscribe(props['topics'])
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
+=======
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 
     @staticmethod
     def load_schema(schema_path: str):
@@ -69,7 +76,8 @@ class RideAvroConsumer:
             schema_str = f.read()
         return schema_str
 
-    def consume_from_kafka(self):
+    def consume_from_kafka(self, topics: List[str]):
+        self.consumer.subscribe(topics=topics)
         while True:
             try:
                 # SIGINT can't be handled when polling, limit timeout to 1 second.
@@ -132,6 +140,7 @@ if __name__ == "__main__":
         'schema.key': RIDE_KEY_SCHEMA_PATH,
         'schema.value': RIDE_VALUE_SCHEMA_PATH,
 <<<<<<< HEAD
+<<<<<<< HEAD
     }
     avro_consumer = RideAvroConsumer(props=config)
     avro_consumer.consume_from_kafka(topics=[KAFKA_TOPIC])
@@ -142,3 +151,8 @@ if __name__ == "__main__":
     avro_consumer = RideAvroConsumer(props=config)
     avro_consumer.consume_from_kafka()
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
+=======
+    }
+    avro_consumer = RideAvroConsumer(props=config)
+    avro_consumer.consume_from_kafka(topics=[KAFKA_TOPIC])
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))

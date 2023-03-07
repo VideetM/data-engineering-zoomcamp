@@ -7,12 +7,16 @@ import os
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 =======
 import os
+<<<<<<< HEAD
 from confluent_kafka import Producer
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
+=======
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 import csv
 from time import sleep
 from typing import Dict
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -33,12 +37,15 @@ from settings import RIDE_KEY_SCHEMA_PATH, RIDE_VALUE_SCHEMA_PATH, \
     SCHEMA_REGISTRY_URL, BOOTSTRAP_SERVERS, INPUT_DATA_PATH, KAFKA_TOPIC
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 =======
+=======
+from confluent_kafka import Producer
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 from confluent_kafka.schema_registry import SchemaRegistryClient
 from confluent_kafka.schema_registry.avro import AvroSerializer
 from confluent_kafka.serialization import SerializationContext, MessageField
+
 from ride_record_key import RideRecordKey, ride_record_key_to_dict
 from ride_record import RideRecord, ride_record_to_dict
-from typing import Dict
 from settings import RIDE_KEY_SCHEMA_PATH, RIDE_VALUE_SCHEMA_PATH, \
     SCHEMA_REGISTRY_URL, BOOTSTRAP_SERVERS, INPUT_DATA_PATH, KAFKA_TOPIC
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
@@ -74,8 +81,11 @@ class RideAvroProducer:
         # Producer Configuration
         producer_props = {'bootstrap.servers': props['bootstrap.servers']}
         self.producer = Producer(producer_props)
+<<<<<<< HEAD
         self.topic = KAFKA_TOPIC
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
+=======
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 
     @staticmethod
     def load_schema(schema_path: str):
@@ -110,6 +120,7 @@ class RideAvroProducer:
         return zip(ride_keys, ride_records)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def publish(self, topic: str, records: [RideRecordKey, RideRecord]):
         for key_value in records:
             key, value = key_value
@@ -120,14 +131,21 @@ class RideAvroProducer:
                                       value=self.value_serializer(value, SerializationContext(topic=topic,
 =======
     def publish(self, records: [RideRecordKey, RideRecord]):
+=======
+    def publish(self, topic: str, records: [RideRecordKey, RideRecord]):
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
         for key_value in records:
             key, value = key_value
             try:
-                self.producer.produce(topic=self.topic,
-                                      key=self.key_serializer(key, SerializationContext(topic=self.topic,
+                self.producer.produce(topic=topic,
+                                      key=self.key_serializer(key, SerializationContext(topic=topic,
                                                                                         field=MessageField.KEY)),
+<<<<<<< HEAD
                                       value=self.value_serializer(value, SerializationContext(topic=self.topic,
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
+=======
+                                      value=self.value_serializer(value, SerializationContext(topic=topic,
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
                                                                                               field=MessageField.VALUE)),
                                       on_delivery=delivery_report)
             except KeyboardInterrupt:
@@ -159,8 +177,12 @@ if __name__ == "__main__":
     producer = RideAvroProducer(props=config)
     ride_records = producer.read_records(resource_path=INPUT_DATA_PATH)
 <<<<<<< HEAD
+<<<<<<< HEAD
     producer.publish(topic=KAFKA_TOPIC, records=ride_records)
 >>>>>>> cbe18f2f (Refactor python streaming examples (#337))
 =======
     producer.publish(records=ride_records)
 >>>>>>> 31118075 (Initiate PySpark streaming and refactor existing python-kafka examples (#325))
+=======
+    producer.publish(topic=KAFKA_TOPIC, records=ride_records)
+>>>>>>> cbe18f2f (Refactor python streaming examples (#337))
