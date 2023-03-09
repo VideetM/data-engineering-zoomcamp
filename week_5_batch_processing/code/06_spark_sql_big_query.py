@@ -41,7 +41,7 @@ df_yellow = df_yellow \
     .withColumnRenamed('tpep_dropoff_datetime', 'dropoff_datetime')
 
 
-common_colums = [
+ommon_colums = [
     'VendorID',
     'pickup_datetime',
     'dropoff_datetime',
